@@ -29,7 +29,7 @@ $.getJSON("tasks.json", function (json) {
         } else {
             tasks.innerHTML += `
             <div class="task" id="${json.tasks[x].id}">
-                <div>
+                <div class="content">
                     <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
                     <span>${json.tasks[x].taskTitle}</span>
                 </div>

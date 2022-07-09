@@ -1,18 +1,13 @@
 {
     "tasks": [
         {
-            "taskTitle": "First Task",
-            "completed": true,
-            "id": 862863
-        },
-        {
             "taskTitle": "Second Task",
             "completed": true,
             "id": 197264
         },
         {
             "taskTitle": "demo?",
-            "completed": false,
+            "completed": true,
             "id": 648847
         }
     ]
