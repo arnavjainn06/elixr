@@ -1,14 +1,19 @@
 {
     "tasks": [
         {
-            "taskTitle": "Second Task",
+            "taskTitle": "Install Elixr 🚀",
             "completed": true,
             "id": 197264
         },
         {
-            "taskTitle": "demo?",
-            "completed": true,
+            "taskTitle": "Add First Task ✅",
+            "completed": false,
             "id": 648847
+        },
+        {
+            "taskTitle": "Make sure to delete the dmg file after installation of the app 🗑",
+            "completed": false,
+            "id": 509892
         }
     ]
 }
