@@ -18,16 +18,22 @@ $.getJSON("tasks.json", function (json) {
         if (json.tasks[x].completed) {
             tasks.innerHTML += `
             <div class="task checked" id="${json.tasks[x].id}">
-                <img onclick="switchState(${json.tasks[x].id})" src="./assets/checker.svg" class="svg-fig"/>
-                <span>${json.tasks[x].taskTitle}</span>
+                <div class="content">
+                    <img onclick="switchState(${json.tasks[x].id})" src="./assets/checker.svg" class="svg-fig"/>
+                    <span>${json.tasks[x].taskTitle}</span>
+                </div>
+                <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
             </div>
             `;
             completedNo++;
         } else {
             tasks.innerHTML += `
             <div class="task" id="${json.tasks[x].id}">
-                <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
-                <span>${json.tasks[x].taskTitle}</span>
+                <div>
+                    <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
+                    <span>${json.tasks[x].taskTitle}</span>
+                </div>
+                <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
             </div>
             `;
         }
@@ -67,16 +73,22 @@ function resetVC() {
             if (json.tasks[x].completed) {
                 tasks.innerHTML += `
                 <div class="task checked" id="${json.tasks[x].id}">
-                    <img onclick="switchState(${json.tasks[x].id})" src="./assets/checker.svg" class="svg-fig"/>
-                    <span>${json.tasks[x].taskTitle}</span>
+                    <div class="content">
+                        <img onclick="switchState(${json.tasks[x].id})" src="./assets/checker.svg" class="svg-fig"/>
+                        <span>${json.tasks[x].taskTitle}</span>
+                    </div>
+                    <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
                 </div>
                 `;
                 completedNo++;
             } else {
                 tasks.innerHTML += `
                 <div class="task" id="${json.tasks[x].id}">
-                    <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
-                    <span>${json.tasks[x].taskTitle}</span>
+                    <div class="content">
+                        <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
+                        <span>${json.tasks[x].taskTitle}</span>
+                    </div>
+                    <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
                 </div>
                 `;
             }
@@ -95,6 +107,16 @@ function switchState(id) {
     lastSave.map((elx) => {
         if (elx.id === id) {
             elx.completed = !elx.completed;
+        }
+    });
+    ipcRenderer.send("rewrite", lastSave);
+}
+
+function deleteTask(id) {
+    lastSave.map((elx) => {
+        if (elx.id === id) {
+            const integral = lastSave.indexOf(elx);
+            lastSave.splice(integral, 1);
         }
     });
     ipcRenderer.send("rewrite", lastSave);

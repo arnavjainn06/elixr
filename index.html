@@ -48,7 +48,12 @@
         .task {
             display: flex;
             align-items: start;
-            margin-bottom: 6px;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .content {
+            display: flex;
+            align-items: start;
         }
         .checked span, .task span {
             font-weight: 400;
@@ -56,51 +61,6 @@
             font-size: 14px;
             opacity: 0.6;
             transform: translateY(1.6px);
-        }
-        .ellipse-outline {
-            width: 20px;
-            height: 20px;
-            margin-right: 4px;
-            color: white;
-        }
-        .checker {
-            width: 18px;
-            height: 18px;
-            background-color: #346dff;
-            opacity: 1;
-            border-radius: 1000px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1px;
-            margin-right: 5.5px;
-        }
-        .checkicon {
-            width: 10px !important;
-            height: 14px !important;
-            color: white;
-        }
-        .checked span {
-            text-decoration: line-through;
-            opacity: 0.3 !important;
-        }
-        .footer {
-            position: absolute;
-            bottom: 10px;
-            display: flex;
-            left: 0;
-            right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            justify-content: center;
-            flex: 1;
-            align-items: center;
-        }
-        #foot {
-            text-align: center;
-            font-size: 11px !important;
-            color: rgba(255, 255, 255, 0.301);
-            /* font-weight: 500; */
         }
         .controls {
             display: flex;
@@ -138,6 +98,18 @@
             margin-right: 4px;
             width: 20px;
             height: 20px;
+        }
+        .trash {
+            color: rgba(255, 255, 255, 0.568);
+            transform: translateY(3px);
+            display: none;
+            width: 16px;
+            min-width: 16px;
+            height: 16px;
+            min-height: 16px;
+        }
+        .task:hover .trash {
+            display: block;
         }
     </style>
 </head>
