@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elixr ᐧ Tasks</title>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        * {
+            font-family: "SF Pro Display";
+        }
+        body {
+            padding: 14px 10px;
+            border:3px soild rgb(255, 20, 20);
+            overflow:hidden;
+            box-sizing:border-box;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        h2 {
+            font-weight: 600;
+            font-size: 21px;
+            margin: 0;
+            color: white;
+            margin-bottom: 10px;
+        }
+        header span {
+            transform: translateY(-7px);
+            font-weight: 600;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.61);
+        }
+        header span .checkmark-outline {
+            font-size: 15px;
+            transform: translateY(2px);
+        }
+        .tasks {
+            height: 295px;
+            overflow-y: scroll;
+        }
+        .task {
+            display: flex;
+            align-items: start;
+            margin-bottom: 6px;
+        }
+        .checked span, .task span {
+            font-weight: 400;
+            color: white;
+            font-size: 14px;
+            opacity: 0.6;
+            transform: translateY(1.6px);
+        }
+        .ellipse-outline {
+            width: 20px;
+            height: 20px;
+            margin-right: 4px;
+            color: white;
+        }
+        .checker {
+            width: 18px;
+            height: 18px;
+            background-color: #346dff;
+            opacity: 1;
+            border-radius: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1px;
+            margin-right: 5.5px;
+        }
+        .checkicon {
+            width: 10px !important;
+            height: 14px !important;
+            color: white;
+        }
+        .checked span {
+            text-decoration: line-through;
+            opacity: 0.3 !important;
+        }
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            display: flex;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            flex: 1;
+            align-items: center;
+        }
+        #foot {
+            text-align: center;
+            font-size: 11px !important;
+            color: rgba(255, 255, 255, 0.301);
+            /* font-weight: 500; */
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            bottom: 10px;
+            width: 265px;
+        }
+        .controls input {
+            background-color: transparent;
+            color: white;
+            height: 30px;
+            flex: 1;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-family: "SF Pro Display", sans-serif;
+            font-weight: 500;
+        }
+        .controls input::placeholder {
+            color: rgba(255, 255, 255, 0.623) !important;
+            font-family: "SF Pro Display", sans-serif;
+        }
+        .add-btn {
+            width: 20px;
+            height: 20px;
+            color: #b3c8ff;
+            transition: 0.2s ease-in-out;
+        }
+        .add-btn:hover {
+            opacity: 0.3;
+            transition: 0.2s ease-in-out;
+        }
+        .svg-fig {
+            margin-right: 4px;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Tasks</h2>
+        <span id="counter"></span>
+    </header>
+    <div class="tasks" id="tasks">
+        <!-- <div class="task" id="task">
+            <ion-icon name="ellipse-outline" class="ellipse-outline"></ion-icon>
+            <span>Get fuel for the rockets 🚀</span>
+        </div>
+        <div class="task checked" id="task">
+            <div class="checker">
+                <ion-icon name="checkmark-outline" class="checkicon"></ion-icon>
+            </div>
+            <span>Get fuel for the rockets 🚀</span>
+        </div> -->
+    </div>
+    <!-- <div class="footer">
+        <span id="foot">
+            2 of 3 tasks completed
+        </span>
+    </div> -->
+    <div class="controls">
+        <input id="newTaskTitle" type="text" class="new" placeholder="Add new task">
+        <ion-icon name="add-circle-outline" class="add-btn"></ion-icon>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="index.js"></script>
+</html>
