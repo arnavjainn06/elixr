@@ -22,6 +22,10 @@ app.on("ready", () => {
     initializeTray();
 });
 
+ipcMain.on("dimensions", (data) => {
+    console.log(data);
+});
+
 const initializeTray = () => {
     if (process.platform == "win32") {
         tray = new Tray(path.join(assetsDirectory, "tray_icon_win.png"));
@@ -56,6 +60,9 @@ const initializeApp = () => {
             devTools: true,
         },
     });
+
+    window.setAlwaysOnTop(true, "screen-saver"); // - 2 -
+    window.setVisibleOnAllWorkspaces(true);
     // window.webContents.toggleDevTools();
 
     window.on("blur", () => {

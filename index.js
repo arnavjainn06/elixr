@@ -7,6 +7,8 @@ let taskLength;
 let completedNo = 0;
 let lastSave = [];
 
+ipcRenderer.send("dimensions", window.screen.width);
+
 $.getJSON("tasks.json", function (json) {
     taskLength = json.tasks.length;
     lastSave = json.tasks;
@@ -46,8 +48,29 @@ const newTaskTitle = document.getElementById("newTaskTitle");
 
 newTaskTitle.addEventListener("keypress", (e) => {
     if (e.which == 13 || e.keyCode == 13) {
+        if (e.target.value.trim() != "") {
+            let newMap = {
+                taskTitle: e.target.value,
+                completed: false,
+                id: Math.floor(100000 + Math.random() * 900000),
+            };
+
+            lastSave.push(newMap);
+
+            ipcRenderer.send("rewrite", lastSave);
+            newTaskTitle.value = "";
+        }
+    }
+
+    // resetVC();
+});
+
+const addBtn = document.getElementById("add-btn");
+
+addBtn.onclick = () => {
+    if (newTaskTitle.value.trim() != "") {
         let newMap = {
-            taskTitle: e.target.value,
+            taskTitle: newTaskTitle.value,
             completed: false,
             id: Math.floor(100000 + Math.random() * 900000),
         };
@@ -57,9 +80,7 @@ newTaskTitle.addEventListener("keypress", (e) => {
         ipcRenderer.send("rewrite", lastSave);
         newTaskTitle.value = "";
     }
-
-    // resetVC();
-});
+};
 
 function resetVC() {
     $.getJSON("tasks.json", function (json) {
