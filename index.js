@@ -7,7 +7,7 @@ let taskLength;
 let completedNo = 0;
 let lastSave = [];
 
-ipcRenderer.send("dimensions", window.screen.width);
+ipcRenderer.send("dimensions", [window.screen.width, window.screen.height]);
 
 $.getJSON("tasks.json", function (json) {
     taskLength = json.tasks.length;
@@ -141,4 +141,8 @@ function deleteTask(id) {
         }
     });
     ipcRenderer.send("rewrite", lastSave);
+}
+
+function getRes() {
+    return [window.screen.width, window.screen.height];
 }

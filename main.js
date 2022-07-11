@@ -15,15 +15,19 @@ const ciqlJSON = require("ciql-json");
 let tray;
 let window;
 
+let x;
+let y;
+
 const assetsDirectory = path.join(__dirname, "assets");
+
+ipcMain.on("dimensions", (event, data) => {
+    x = data[0];
+    y = data[1];
+});
 
 app.on("ready", () => {
     initializeApp();
     initializeTray();
-});
-
-ipcMain.on("dimensions", (data) => {
-    console.log(data);
 });
 
 const initializeTray = () => {
@@ -50,7 +54,7 @@ const initializeApp = () => {
         vibrancy: "dark",
         minimizable: false,
         frame: false,
-        x: 1196,
+        x: 1195,
         y: 45,
         resizable: false,
         webPreferences: {
