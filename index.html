@@ -61,9 +61,11 @@
             font-size: 14px;
             transform: translateY(1.6px);
             margin-left: 3px;
+            transition: 0.15s ease-in-out;
         }
         .checked .content span {
             text-decoration: line-through;
+            transition: 0.15s ease-in-out;
             opacity: 0.6;
         }
         .controls {
@@ -132,12 +134,25 @@
             font-size: 17px;
             margin-top: 10px;
         }
+        .right-head {
+            display: flex;
+            align-items: center;
+        }
+        .cog-outline {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.678);
+            transform: translateY(-5.5px);
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h2>Tasks</h2>
-        <span id="counter"></span>
+        <div class="right-head">
+            <span id="counter"></span>
+            <!-- <ion-icon name="cog-outline" class="cog-outline"></ion-icon> -->
+        </div>
     </header>
     <div class="tasks" id="tasks">
         <!-- <div class="task" id="task">

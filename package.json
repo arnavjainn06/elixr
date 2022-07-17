@@ -1,5 +1,5 @@
 {
-  "name": "elixr",
+  "name": "Elixr",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -12,6 +12,7 @@
   "dependencies": {
     "ciql-json": "^1.9.6",
     "express": "^4.18.1",
+    "open": "^8.4.0",
     "path": "^0.12.7"
   },
   "devDependencies": {

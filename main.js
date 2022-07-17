@@ -11,6 +11,7 @@ const {
 const path = require("path");
 
 const ciqlJSON = require("ciql-json");
+const open = require("open");
 
 let tray;
 let window;
@@ -40,6 +41,48 @@ const initializeTray = () => {
     // tray.on("double-click", toggleWindow);
     tray.on("click", function (event) {
         toggleWindow();
+    });
+
+    const contextMenu = [
+        {
+            label: "View On GitHub",
+            click() {
+                open("https://github.com/arnavjainn06/elixr");
+            },
+        },
+        {
+            label: "About The Developer",
+            click() {
+                open("https://arnavjain.in");
+            },
+        },
+        {
+            label: "Visit Webpage",
+            click() {
+                open("https://arnavjain.in");
+            },
+        },
+        {
+            label: "About Elixr",
+            role: "about",
+        },
+        { label: "Separator", type: "separator" },
+        {
+            label: "Toggle Window",
+            accelerator: "Ctrl+Space",
+            click: toggleWindow,
+        },
+        {
+            role: "quit",
+            accelerator: "Command+Q",
+            click() {
+                app.quit();
+            },
+        },
+    ];
+
+    tray.on("right-click", () => {
+        tray.popUpContextMenu(Menu.buildFromTemplate(contextMenu));
     });
 };
 
@@ -126,3 +169,5 @@ ipcMain.on("rewrite", (event, data) => {
 ipcMain.on("switchStateSystem", (event, data) => {
     // console.log(data);
 });
+
+ipcMain.on("openPrefs", (event, data) => {});

@@ -7,13 +7,8 @@
         },
         {
             "taskTitle": "Add First Task ✅",
-            "completed": false,
+            "completed": true,
             "id": 979250
-        },
-        {
-            "taskTitle": "Rate the app ⭐️",
-            "completed": false,
-            "id": 227477
         }
     ]
 }
