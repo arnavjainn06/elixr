@@ -16,29 +16,38 @@ $.getJSON("tasks.json", function (json) {
     tasks.innerHTML = null;
     completedNo = 0;
 
-    for (let x = 0; x < taskLength; x++) {
-        if (json.tasks[x].completed) {
-            tasks.innerHTML += `
-            <div class="task checked" id="${json.tasks[x].id}">
-                <div class="content">
-                    <img onclick="switchState(${json.tasks[x].id})" src="./assets/checker.svg" class="svg-fig"/>
-                    <span>${json.tasks[x].taskTitle}</span>
+    if (taskLength > 0) {
+        for (let x = 0; x < taskLength; x++) {
+            if (json.tasks[x].completed) {
+                tasks.innerHTML += `
+                <div class="task checked" id="${json.tasks[x].id}">
+                    <div class="content">
+                        <img onclick="switchState(${json.tasks[x].id})" src="./assets/checker.svg" class="svg-fig"/>
+                        <span>${json.tasks[x].taskTitle}</span>
+                    </div>
+                    <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
                 </div>
-                <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
-            </div>
-            `;
-            completedNo++;
-        } else {
-            tasks.innerHTML += `
-            <div class="task" id="${json.tasks[x].id}">
-                <div class="content">
-                    <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
-                    <span>${json.tasks[x].taskTitle}</span>
+                `;
+                completedNo++;
+            } else {
+                tasks.innerHTML += `
+                <div class="task" id="${json.tasks[x].id}">
+                    <div class="content">
+                        <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
+                        <span>${json.tasks[x].taskTitle}</span>
+                    </div>
+                    <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
                 </div>
-                <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
-            </div>
-            `;
+                `;
+            }
         }
+    } else if (taskLength == 0) {
+        tasks.innerHTML += `
+        <div class="notask">
+            <img src="./assets/done.svg"/>
+            <h2>All Caught Up!<h2/>
+        <div/>
+        `;
     }
 
     counter.innerHTML = `${completedNo} of ${taskLength} <ion-icon name="checkmark-outline" class="checkmark-outline"></ion-icon>`;
@@ -90,29 +99,38 @@ function resetVC() {
         tasks.innerHTML = null;
         completedNo = 0;
 
-        for (let x = 0; x < taskLength; x++) {
-            if (json.tasks[x].completed) {
-                tasks.innerHTML += `
-                <div class="task checked" id="${json.tasks[x].id}">
-                    <div class="content">
-                        <img onclick="switchState(${json.tasks[x].id})" src="./assets/checker.svg" class="svg-fig"/>
-                        <span>${json.tasks[x].taskTitle}</span>
+        if (taskLength > 0) {
+            for (let x = 0; x < taskLength; x++) {
+                if (json.tasks[x].completed) {
+                    tasks.innerHTML += `
+                    <div class="task checked" id="${json.tasks[x].id}">
+                        <div class="content">
+                            <img onclick="switchState(${json.tasks[x].id})" src="./assets/checker.svg" class="svg-fig"/>
+                            <span>${json.tasks[x].taskTitle}</span>
+                        </div>
+                        <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
                     </div>
-                    <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
-                </div>
-                `;
-                completedNo++;
-            } else {
-                tasks.innerHTML += `
-                <div class="task" id="${json.tasks[x].id}">
-                    <div class="content">
-                        <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
-                        <span>${json.tasks[x].taskTitle}</span>
+                    `;
+                    completedNo++;
+                } else {
+                    tasks.innerHTML += `
+                    <div class="task" id="${json.tasks[x].id}">
+                        <div class="content">
+                            <img onclick="switchState(${json.tasks[x].id})" src="./assets/ellipsis.svg" class="svg-fig"/>
+                            <span>${json.tasks[x].taskTitle}</span>
+                        </div>
+                        <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
                     </div>
-                    <ion-icon onclick="deleteTask(${json.tasks[x].id})" name="trash" class="trash"></ion-icon>
-                </div>
-                `;
+                    `;
+                }
             }
+        } else if (taskLength == 0) {
+            tasks.innerHTML += `
+            <div class="notask">
+                <img src="./assets/done.svg"/>
+                <h2>All Caught Up!<h2/>
+            <div/>
+            `;
         }
 
         counter.innerHTML = `${completedNo} of ${taskLength} <ion-icon name="checkmark-outline" class="checkmark-outline"></ion-icon>`;

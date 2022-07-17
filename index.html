@@ -59,12 +59,12 @@
             font-weight: 400;
             color: white;
             font-size: 14px;
-            opacity: 0.6;
             transform: translateY(1.6px);
             margin-left: 3px;
         }
         .checked .content span {
             text-decoration: line-through;
+            opacity: 0.6;
         }
         .controls {
             display: flex;
@@ -114,6 +114,23 @@
         }
         .task:hover .trash {
             display: block;
+        }
+        .notask {
+            /* width: 250px; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            user-select: none;
+        }
+        .notask img {
+            width: 150px;
+        }
+        .notask h2 {
+            color: rgba(255, 255, 255, 0.89);
+            font-size: 17px;
+            margin-top: 10px;
         }
     </style>
 </head>

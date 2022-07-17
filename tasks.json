@@ -1,9 +1,19 @@
 {
     "tasks": [
         {
-            "taskTitle": "Relax",
+            "taskTitle": "Install Elixr 🚀",
             "completed": true,
-            "id": 315992
+            "id": 804525
+        },
+        {
+            "taskTitle": "Add First Task ✅",
+            "completed": false,
+            "id": 979250
+        },
+        {
+            "taskTitle": "Rate the app ⭐️",
+            "completed": false,
+            "id": 227477
         }
     ]
 }
