@@ -10,6 +10,8 @@ const {
 } = require("electron");
 const path = require("path");
 
+const preferences = require("./prefs.json");
+
 const ciqlJSON = require("ciql-json");
 const open = require("open");
 
@@ -43,45 +45,71 @@ const initializeTray = () => {
         toggleWindow();
     });
 
-    const contextMenu = [
-        {
-            label: "View On GitHub",
-            click() {
-                open("https://github.com/arnavjainn06/elixr");
-            },
-        },
-        {
-            label: "About The Developer",
-            click() {
-                open("https://arnavjain.in");
-            },
-        },
-        {
-            label: "Visit Webpage",
-            click() {
-                open("https://arnavjain.in");
-            },
-        },
-        {
-            label: "About Elixr",
-            role: "about",
-        },
-        { label: "Separator", type: "separator" },
-        {
-            label: "Toggle Window",
-            accelerator: "Ctrl+Space",
-            click: toggleWindow,
-        },
-        {
-            role: "quit",
-            accelerator: "Command+Q",
-            click() {
-                app.quit();
-            },
-        },
-    ];
-
     tray.on("right-click", () => {
+        const contextMenu = [
+            {
+                label: "View On GitHub",
+                click() {
+                    open("https://github.com/arnavjainn06/elixr");
+                },
+            },
+            {
+                label: "About The Developer",
+                click() {
+                    open("https://arnavjain.in");
+                },
+            },
+            { label: "Separator", type: "separator" },
+            {
+                label: "Visit Webpage",
+                click() {
+                    open("https://arnavjain.in");
+                },
+            },
+            {
+                label: "About Elixr",
+                role: "about",
+            },
+            { label: "Separator", type: "separator" },
+            {
+                label: "Toggle Window",
+                accelerator: "Ctrl+Space",
+                click: toggleWindow,
+            },
+            {
+                label: "Keyboard Shortcut",
+                type: "checkbox",
+                checked: preferences.shortcut,
+                click() {
+                    if (preferences.shortcut == true) {
+                        ciqlJSON
+                            .open("prefs.json")
+                            .set("shortcut", false)
+                            .save();
+
+                        globalShortcut.unregister("Command + Shift + T");
+                    } else {
+                        ciqlJSON
+                            .open("prefs.json")
+                            .set("shortcut", true)
+                            .save();
+
+                        globalShortcut.register("Command + Shift + T", () => {
+                            toggleWindow();
+                        });
+                    }
+                },
+                accelerator: "Command+Shift+T",
+            },
+            {
+                role: "quit",
+                accelerator: "Command+Q",
+                click() {
+                    app.quit();
+                },
+            },
+        ];
+
         tray.popUpContextMenu(Menu.buildFromTemplate(contextMenu));
     });
 };
@@ -120,6 +148,12 @@ const initializeApp = () => {
         e.preventDefault();
         require("electron").shell.openExternal(url);
     });
+
+    if (preferences.shortcut) {
+        globalShortcut.register("Command + Shift + T", () => {
+            toggleWindow();
+        });
+    }
 
     if (process.platform == "darwin") {
         // Don't show the app in the dock for macOS
